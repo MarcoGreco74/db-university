@@ -1,0 +1,35 @@
+ Selezionare tutti gli studenti nati nel 1990 (160)
+SELECT * FROM `students` WHERE YEAR(date_of_birth) = '1990';
+
+ Selezionare tutti i corsi che valgono più di 10 crediti (479)
+SELECT * FROM `courses` WHERE `cfu` > 10;
+
+ Selezionare tutti gli studenti che hanno più di 30 anni
+SELECT * FROM `students` WHERE YEAR(CURRENT_DATE()) - YEAR(students.date_of_birth) > 30; 
+
+ Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
+SELECT * FROM `courses` WHERE courses.period = 'I semestre' AND courses.year = 1;
+
+ Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del 20/06/2020 (21)
+SELECT * FROM `exams` WHERE exams.hour > '14:00:00' AND exams.date = '2020-06-20';
+
+ Selezionare tutti i corsi di laurea magistrale (38)
+SELECT * FROM `degrees` WHERE name LIKE 'Corso Di Laurea Magistrale%';
+
+Da quanti dipartimenti è composta l'università? (12)
+SELECT COUNT(*) FROM `departments`;
+
+ Quanti sono gli insegnanti che non hanno un numero di telefono? (50)
+SELECT COUNT(*) FROM `teachers` WHERE teachers.phone IS NULL;
+
+ Contare quanti iscritti ci sono stati ogni anno
+SELECT enrolment_date AS anno_di_iscrizione,  COUNT(*) AS quanti_iscritti FROM `students` GROUP BY enrolment_date;
+
+ Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+SELECT office_address, COUNT(*) AS quanti_insegnanti_nello_stesso_edificio FROM `teachers` GROUP BY office_address;
+
+Calcolare la media dei voti di ogni appello d'esame
+SELECT exam_id AS appello, AVG(vote) AS media_voto FROM `exam_student` GROUP BY exam_id;
+
+ Contare quanti corsi di laurea ci sono per ogni dipartimento
+La tabella departments non ha colonne di riferimento a courses ne viveversa per cui QUERY NON ESEGUITA.
